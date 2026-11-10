@@ -1,0 +1,238 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme - white & light gray surfaces, blue primary */
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 189 94% 43%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 60%;
+    --chart-1: 217 91% 60%;
+    --chart-2: 189 94% 43%;
+    --chart-3: 142 71% 45%;
+    --chart-4: 38 92% 50%;
+    --chart-5: 280 65% 60%;
+    --radius: 0.625rem;
+    --sidebar: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-accent: 210 40% 96%;
+  }
+
+  .dark {
+    /* Dark theme - midnight navy, blue primary, cyan accent */
+    --background: 222 47% 9%;
+    --foreground: 210 40% 96%;
+    --card: 222 47% 12%;
+    --card-foreground: 210 40% 96%;
+    --popover: 222 47% 12%;
+    --popover-foreground: 210 40% 96%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 222 40% 16%;
+    --secondary-foreground: 210 40% 96%;
+    --muted: 222 40% 16%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 189 94% 50%;
+    --accent-foreground: 222 47% 9%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 64% 42%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 222 47% 9%;
+    --border: 222 30% 20%;
+    --input: 222 30% 20%;
+    --ring: 217 91% 60%;
+    --chart-1: 217 91% 60%;
+    --chart-2: 189 94% 50%;
+    --chart-3: 142 64% 42%;
+    --chart-4: 38 92% 50%;
+    --chart-5: 280 65% 60%;
+    --sidebar: 222 47% 11%;
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-border: 222 30% 18%;
+    --sidebar-accent: 222 40% 16%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  [dir="rtl"] {
+    font-family: var(--font-vazirmatn), var(--font-inter), sans-serif;
+  }
+  [dir="ltr"] {
+    font-family: var(--font-inter), sans-serif;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 3px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+}
+
+/* ───────────────────────────────────────────────────────────
+   Print styles — ensure the full report exports as a PDF.
+   The app shell clips content with h-screen + overflow-hidden;
+   during printing we undo that so the entire document flows.
+   ─────────────────────────────────────────────────────────── */
+@media print {
+  html,
+  body {
+    height: auto !important;
+    overflow: visible !important;
+    background: #fff !important;
+  }
+
+  /* Force a readable color scheme regardless of the active theme,
+     so dark-theme users still get a legible PDF. */
+  .dark {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 217 91% 60%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --border: 214 32% 91%;
+    --sidebar: 0 0% 100%;
+    --sidebar-border: 214 32% 91%;
+  }
+
+  /* Un-clip the app shell layout. */
+  .h-screen,
+  .overflow-hidden,
+  .overflow-y-auto,
+  .overflow-x-auto {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Hide navigation chrome; only the report content matters. */
+  aside,
+  header,
+  [data-print-hidden],
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* Let the main content use the full page width. */
+  main {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .mx-auto.max-w-7xl {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  /* Cards: flat borders, no shadow, avoid breaking inside. */
+  [class*="border"],
+  .rounded-lg,
+  .rounded-xl {
+    box-shadow: none !important;
+  }
+
+  /* Avoid splitting a card across two pages. */
+  .print-block {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Tables: repeat header rows on each page, avoid row splitting. */
+  table {
+    width: 100% !important;
+    font-size: 11px !important;
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Allow long tables to flow across pages naturally. */
+  .scrollbar-thin {
+    overflow: visible !important;
+  }
+
+  /* Explicit page-break helpers. */
+  .print-break-before {
+    break-before: page;
+    page-break-before: always;
+  }
+
+  .print-break-after {
+    break-after: page;
+    page-break-after: always;
+  }
+
+  /* Ensure the <html> direction is preserved for RTL printing. */
+  [dir="rtl"] {
+    direction: rtl;
+  }
+
+  /* Color adjustments: remove translucent backgrounds that print poorly. */
+  .bg-success\/5,
+  .bg-warning\/5,
+  .bg-destructive\/5,
+  .bg-muted\/40,
+  .bg-muted\/30,
+  .bg-muted\/20 {
+    background-color: hsl(var(--muted)) !important;
+  }
+
+  /* Page margins. */
+  @page {
+    margin: 1.5cm 1.2cm;
+  }
+}
