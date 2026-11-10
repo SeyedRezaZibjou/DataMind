@@ -1,3 +1,12 @@
+[![Next.js](https://img.shields.io/badge/Next.js-13.5.1-black.svg?logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-18.2-61DAFB.svg?logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.2.2-blue.svg?logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3-06B6D4.svg?logo=tailwindcss)](https://tailwindcss.com/)
+[![Recharts](https://img.shields.io/badge/Recharts-2.12.7-22B5BF.svg)](https://recharts.org/)
+[![AI](https://img.shields.io/badge/AI-Groq_API-F55036.svg)](https://groq.com/)
+[![Deployment](https://img.shields.io/badge/Deployment-Vercel-black.svg?logo=vercel)](https://vercel.com/)
+[![GitHub](https://img.shields.io/badge/Repository-GitHub-181717.svg?logo=github)](https://github.com/SeyedRezaZibjou/DataMind)
+
 # DataMind --- AI-Powered Data Analysis & Visualization
 
 DataMind is a web-based data analysis platform that helps users explore
